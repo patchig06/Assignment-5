@@ -53,3 +53,87 @@ def delete_one_order(order_id: int, db: Session = Depends(get_db)):
     if order is None:
         raise HTTPException(status_code=404, detail="User not found")
     return orders.delete(db=db, order_id=order_id)
+from api.controllers import sandwiches
+
+@app.post("/sandwiches/", tags=["Sandwiches"])
+def create_sandwich(sandwich: schemas.SandwichCreate, db: Session = Depends(get_db)):
+    return sandwiches.create(db=db, sandwich=sandwich)
+
+@app.get("/sandwiches/", tags=["Sandwiches"])
+def read_sandwiches(db: Session = Depends(get_db)):
+    return sandwiches.read_all(db)
+
+@app.get("/sandwiches/{sandwich_id}", tags=["Sandwiches"])
+def read_one_sandwich(sandwich_id: int, db: Session = Depends(get_db)):
+    return sandwiches.read_one(db, sandwich_id)
+
+@app.put("/sandwiches/{sandwich_id}", tags=["Sandwiches"])
+def update_sandwich(sandwich_id: int, sandwich: schemas.SandwichUpdate, db: Session = Depends(get_db)):
+    return sandwiches.update(db=db, sandwich_id=sandwich_id, sandwich=sandwich)
+
+@app.delete("/sandwiches/{sandwich_id}", tags=["Sandwiches"])
+def delete_sandwich(sandwich_id: int, db: Session = Depends(get_db)):
+    return sandwiches.delete(db=db, sandwich_id=sandwich_id)
+from api.controllers import resources
+
+@app.post("/resources/", tags=["Resources"])
+def create_resource(resource: schemas.ResourceCreate, db: Session = Depends(get_db)):
+    return resources.create(db=db, resource=resource)
+
+@app.get("/resources/", tags=["Resources"])
+def read_resources(db: Session = Depends(get_db)):
+    return resources.read_all(db)
+
+@app.get("/resources/{resource_id}", tags=["Resources"])
+def read_one_resource(resource_id: int, db: Session = Depends(get_db)):
+    return resources.read_one(db, resource_id)
+
+@app.put("/resources/{resource_id}", tags=["Resources"])
+def update_resource(resource_id: int, resource: schemas.ResourceUpdate, db: Session = Depends(get_db)):
+    return resources.update(db=db, resource_id=resource_id, resource=resource)
+
+@app.delete("/resources/{resource_id}", tags=["Resources"])
+def delete_resource(resource_id: int, db: Session = Depends(get_db)):
+    return resources.delete(db=db, resource_id=resource_id)
+from api.controllers import recipes
+
+@app.post("/recipes/", tags=["Recipes"])
+def create_recipe(recipe: schemas.RecipeCreate, db: Session = Depends(get_db)):
+    return recipes.create(db=db, recipe=recipe)
+
+@app.get("/recipes/", tags=["Recipes"])
+def read_recipes(db: Session = Depends(get_db)):
+    return recipes.read_all(db)
+
+@app.get("/recipes/{recipe_id}", tags=["Recipes"])
+def read_one_recipe(recipe_id: int, db: Session = Depends(get_db)):
+    return recipes.read_one(db, recipe_id)
+
+@app.put("/recipes/{recipe_id}", tags=["Recipes"])
+def update_recipe(recipe_id: int, recipe: schemas.RecipeUpdate, db: Session = Depends(get_db)):
+    return recipes.update(db=db, recipe_id=recipe_id, recipe=recipe)
+
+@app.delete("/recipes/{recipe_id}", tags=["Recipes"])
+def delete_recipe(recipe_id: int, db: Session = Depends(get_db)):
+    return recipes.delete(db=db, recipe_id=recipe_id)
+from api.controllers import order_details
+
+@app.post("/order_details/", tags=["Order Details"])
+def create_order_detail(order_detail: schemas.OrderDetailCreate, db: Session = Depends(get_db)):
+    return order_details.create(db=db, order_detail=order_detail)
+
+@app.get("/order_details/", tags=["Order Details"])
+def read_order_details(db: Session = Depends(get_db)):
+    return order_details.read_all(db)
+
+@app.get("/order_details/{order_detail_id}", tags=["Order Details"])
+def read_one_order_detail(order_detail_id: int, db: Session = Depends(get_db)):
+    return order_details.read_one(db, order_detail_id)
+
+@app.put("/order_details/{order_detail_id}", tags=["Order Details"])
+def update_order_detail(order_detail_id: int, order_detail: schemas.OrderDetailUpdate, db: Session = Depends(get_db)):
+    return order_details.update(db=db, order_detail_id=order_detail_id, order_detail=order_detail)
+
+@app.delete("/order_details/{order_detail_id}", tags=["Order Details"])
+def delete_order_detail(order_detail_id: int, db: Session = Depends(get_db)):
+    return order_details.delete(db=db, order_detail_id=order_detail_id)
